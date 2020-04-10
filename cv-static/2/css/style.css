@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Tajawal&display=swap');
+
+html,
+body {
+    font-family: 'Tajawal', sans-serif;
+}
+
+.title {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.colon::after {
+    font-weight: bold;
+    content: ":";
+}
+
+
+.field-name {
+    padding-bottom: 7px;
+}
+
+.field-value {
+    font-weight: bold;
+}
+
+.text-right {
+    text-align: start;
+    font-weight: bold;
+}
+
+.language-experience-value {
+    font-size: 13px;
+
+}
+
+.language-experience-progress {
+    height: auto;
+}
+
+.icon {
+    font-size: 12px;
+    padding: 0 10px;
+    align-self: center;
+}
+
+.button {
+    padding-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.skill-checkbox {
+    margin-left: 5px;
+    position: inherit;
+}
+.skill-checkbox-container {
+    text-align: start;
+}
+.items-row {
+    text-align: start;
+}

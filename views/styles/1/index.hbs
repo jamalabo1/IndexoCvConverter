@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>{{app.title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A premium personal template by Mannatthemes" name="description"/>
+    <meta content="Mannatthemes" name="author"/>
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/cv-static/1/images/favicon.ico">
+
+    <link href="/cv-static/1/plugins/filter/magnific-popup.css" rel="stylesheet" type="text/css"/>
+    <link href="/cv-static/1/plugins/animated/headline.css" rel="stylesheet" type="text/css"/>
+
+    <!-- App css-->
+    <link href="/cv-static/1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/cv-static/1/css/icons.css" rel="stylesheet" type="text/css"/>
+    <link href="/cv-static/1/css/style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            {{app.name}}
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button><!--end navbar-toggler-->
+
+        <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="btn btn-blue btn-sm px-4" href="#" id="lnkPrint">
+                        <i class="'uil uil-print mr-1 font-16"></i>
+                        {{i18n "navBar_print"}}
+                    </a>
+                </li>
+            </ul>
+        </div><!--end collapse-->
+    </div><!--end container-->
+</nav><!--end nav-->
+
+<div class="main-wraper">
+    <section class="section bg-profile" id="profile_ripple">
+        <div class="zoo-profile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-print-6 align-self-center mb-3 mb-lg-0">
+                        <div class="zoo-profile-main">
+                            <div class="zoo-profile-main-pic">
+                                <img src="/cv-static/1/images/users/user-4.jpg" alt="" class="rounded-circle">
+
+                            </div><!--end zoo-profile-main-pic-->
+                            <div class="zoo-profile_user-detail">
+                                <h5 class="zoo-user-name">
+                                    {{userProfile.fullName}}
+                                </h5>
+                                <p class="cd-headline loading-bar">
+                                    <span class="cd-words-wrapper">
+                                        <b class="is-visible">
+                                            {{userProfile.schoolName}}
+                                        </b>
+                                    </span>
+                                </p>
+                            </div><!--end zoo-profile_user-detail-->
+                        </div> <!--end profile-main-pic-->
+                    </div><!--end col-->
+                    <div class="col-sm-4 col-print-4 ml-auto">
+                        <ul class="list-unstyled personal-detail">
+                            <li>
+                                <i class="'uil uil-phone-volume mr-2"></i>
+                                <b> {{i18n "personal_phoneNumber"}} </b> : {{user.phoneNumber}}
+                            </li>
+                            <li class="mt-2">
+                                <i class="uil uil-envelope mt-2 mr-2"></i>
+                                <b> {{i18n "personal_email"}} </b> : {{user.email}}
+                            </li>
+                        </ul><!--end personal-detail-->
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end container-->
+        </div><!--end zoo-profile-->
+    </section><!--end section-->
+
+    <section class="section-md">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="header-title mb-3">
+                        {{i18n "section_language_experiences_title"}}
+                    </h4>
+                </div><!--end col-->
+                <div class="col-sm-6 col-print-6 align-self-center">
+                    <div class="skills mt-4">
+                        {{#each userProfile.languageExperiences}}
+                            <div class="skill-box">
+                                <h4 class="skill-title">
+                                    {{i18n (concat "section_language_experiences_language" languageId)  }}
+                                </h4>
+                                <div class="progress-line">
+                                        <span data-percent="{{math 20 "*" experience}}"
+                                              style="width: {{math 20 "*" experience}}%;">
+                                            <span class="percent-tooltip">{{math 20 "*" experience}}%</span>
+                                        </span>
+                                </div>
+                            </div><!--end skill-box-->
+                        {{/each}}
+                    </div><!--end skill-->
+                </div><!--end col-->
+                <div class="col-sm-5 col-print-5 offset-lg-1 align-self-center align-content-center">
+                    <p>
+                        <span class="personal-detail-title">
+                            {{i18n "section_personal_detail_name"}}
+                        </span>
+                        <span class="personal-detail-info">{{userProfile.fullName}}</span>
+                    </p>
+                    <p>
+                        <span class="personal-detail-title">
+                            {{i18n "section_personal_detail_birth_day"}}
+                        </span>
+                        <span class="personal-detail-info">
+                            {{userProfile.birthday}}
+                        </span>
+                    </p>
+                    <p>
+                        <span class="personal-detail-title">
+                            {{i18n "section_personal_detail_identity"}}
+                        </span>
+                        <span class="personal-detail-info">
+                            {{!-- {{user.identity}} --}}
+                        </span>
+                    </p>
+                    <p>
+                        <span class="personal-detail-title">
+                            {{i18n "section_personal_detail_city"}}
+                        </span>
+                        <span class="personal-detail-info">
+                            {{userProfile.city}}
+                        </span>
+                    </p>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+    </section><!--end section-->
+
+    <section class="section-md">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="header-title mb-3">
+                        {{i18n "section_skills_experiences"}}
+                    </h4>
+                </div><!--end col-->
+                <div class="col-sm-6 col-print-6">
+                    <div class="row">
+                        <div class="col-sm-6 col-print-6">
+                            <div class="resume-icon">
+                                <i class="uil uil-medal"></i>
+                                <h5 class="mt-n2">
+                                    {{i18n "section_experience_volunteer"}}
+                                </h5>
+                            </div><!--end resume-icon-->
+                            <div class="timeline">
+                                {{#each userProfile.volunteerExperiences}}
+                                    <div class="time-item ">
+                                        <div class="item-info">
+                                            <div class="font-14">{{startDate}} - {{endDate}}</div>
+                                            <h5 class="my-1 text-dark">{{place}}</h5>
+                                            <p>{{role}}</p>
+                                        </div>
+                                    </div><!--end time-item-->
+                                {{/each}}
+                            </div><!--end timeline-->
+                        </div><!--end col-->
+                        <div class="col-sm-6 col-print-6">
+                            <div class="resume-icon">
+                                <i class="uil uil-suitcase-alt"></i>
+                                <h5 class="mt-n2">
+                                    {{i18n "section_experience_work"}}
+                                </h5>
+                            </div><!--end resume-icon-->
+                            <div class="timeline">
+                                {{#each userProfile.workExperiences}}
+                                    <div class="time-item  mt-3">
+                                        <div class="item-info">
+                                            <div class="font-14">{{startDate}} - {{endDate}}</div>
+                                            <h5 class="my-1 text-dark">{{place}}</h5>
+                                            <p>{{role}}</p>
+                                        </div>
+                                    </div><!--end time-item-->
+                                {{/each}}
+                            </div><!--end timeline-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end col-->
+                <div class="col-sm-6 col-print-6">
+                    <div class="row ">
+                        <div class="col-sm-6 col-print-6">
+                            <div class="resume-icon mb-5">
+                                <i class="uil uil-life-ring"></i>
+                                <h5 class="mt-n2">
+                                    {{i18n "section_skills_skills"}}
+                                </h5>
+                            </div>
+                            {{#each userProfile.skills}}
+                                <div class="custom-control custom-checkbox">
+                                    <input
+                                        {{isSkillAvailable isAvailable}}
+                                            onclick="return false;"
+                                            type="checkbox"
+                                            class="custom-control-input "
+                                            id="{{skillId}}">
+                                    <label class="custom-control-label skill-checkbox" for="{{skillId}}">
+                                        {{i18n (concat "skills" skillId)}}
+                                    </label>
+                                </div>
+                            {{/each}}
+                        </div>
+                        <div class="col-sm-6 col-print-6">
+                            <div class="resume-icon mb-5">
+                                <i class="uil uil-computer-mouse"></i>
+                                <h5 class="mt-n2">
+                                    {{i18n "section_skills_computer"}}
+                                </h5>
+                            </div>
+                            {{#each userProfile.computerSkills}}
+                                <div class="custom-control custom-checkbox">
+                                    <input {{isSkillAvailable isAvailable}} onclick="return false;" type="checkbox"
+                                                                            class="custom-control-input "
+                                                                            id="computer_{{skillId}}">
+                                    <label class="custom-control-label skill-checkbox" for="computer_{{skillId}}">
+                                        {{i18n (concat "computer_skills" skillId)}}
+                                    </label>
+                                </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div><!--end row-->
+
+        </div><!--end container-->
+    </section><!--end section-->
+
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <p class="copyright mb-0 py-4">
+                        Made by Indexo
+                        &copy;<script>document.write(new Date().getFullYear())</script>
+                    </p>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div> <!--end container-->
+    </footer> <!--end footer-area-->
+</div><!--end main-wraper-->
+
+
+<!-- jQuery  -->
+<script src="/cv-static/1/js/jquery.min.js"></script>
+<script src="/cv-static/1/js/bootstrap.bundle.min.js"></script>
+<script src="/cv-static/1/plugins/ripple/jquery.ripples.js"></script>
+<script src="/cv-static/1/plugins/animated/headline.js"></script>
+<script src="/cv-static/1/plugins/counter/jquery.counterup.min.js"></script>
+<script src="/cv-static/1/plugins/counter/waypoints.min.js"></script>
+<script src="/cv-static/1/plugins/filter/isotope.pkgd.min.js"></script>
+<script src="/cv-static/1/plugins/filter/masonry.pkgd.min.js"></script>
+<script src="/cv-static/1/plugins/filter/jquery.magnific-popup.min.js"></script>
+
+<!-- App js -->
+<script src="/cv-static/1/js/app.js"></script>
+
+</body>
+</html>
