@@ -6,7 +6,7 @@ const moment = require('moment');
 const appConfig = {
     title: "Indexo",
     name: 'Indexo'
-}
+};
 
 const dateFormat = "DD/MM/YYYY";
 
@@ -19,7 +19,7 @@ function normalizeExperiences(experiences) {
     }));
 }
 
-router.get('/:style/:userId.html', function (req, res, next) {
+router.get('/:style/:userId.html', function (req, res) {
     const style = req.params.style;
     const userId = req.params.userId;
     const request = axios.create({
