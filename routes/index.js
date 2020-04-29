@@ -69,6 +69,8 @@ router.get('/:style/:userId.html', function (req, res) {
                                 res.status(500).end();
                             }
                         });
+                } else {
+                    return res.status(500).end();
                 }
             }).catch(error => {
                 if (error.response) {
