@@ -48,5 +48,5 @@ app.use("/cv-static", express.static(path.join(__dirname, 'cv-static')));
 //   res.status(err.status || 500);
 // });
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 1337);
 // module.exports = app;
