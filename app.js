@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const i18n = require('i18n');
-
+const fs = require('fs');
 const handlebars = require('hbs');
 const indexRouter = require('./routes/index');
 const handlebarsConfig = require('./i18n/hbsConf');
@@ -10,7 +10,7 @@ for (const helper in handlebarsConfig.helpers) {
     handlebars.registerHelper(helper, handlebarsConfig.helpers[helper]);
 }
 
-headerTemplate = fs.readFileSync(__dirname + '/views/_header.hbs', 'utf8');
+const headerTemplate = fs.readFileSync(__dirname + '/views/_header.hbs', 'utf8');
 
 handlebars.registerPartial("header", headerTemplate)
 
