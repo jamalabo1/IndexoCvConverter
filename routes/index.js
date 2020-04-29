@@ -19,6 +19,8 @@ function normalizeExperiences(experiences) {
     }));
 }
 
+const apiUrl = new URL(process.env.API_URL);
+
 router.get('/:style/:userId.html', function (req, res) {
     const style = req.params.style;
     const userId = req.params.userId;
@@ -26,52 +28,58 @@ router.get('/:style/:userId.html', function (req, res) {
         baseURL: process.env.API_URL,
         headers: {
             ...req.headers,
+            host: apiUrl.host
         }
     });
 
-    return request.get(`/api/users/${userId}`)
-        .then((response) => {
-            if (response && response.data && response.data.userProfileId) {
-                const user = response.data;
-                return request.get(`/api/usersProfiles/${user.userProfileId}`, {
-                    params: {
-                        include: ['languageExperiences', 'skills', 'experiences'],
-                    }
-                })
-                    .then((response2) => {
-                        if (response2 && response2.data) {
-                            const userProfile = response2.data;
-                            return res.render(`styles/${style}/index.hbs`, {
-                                app: appConfig,
-                                user,
-                                userProfile: {
-                                    fullName: userProfile.fullName,
-                                    city: userProfile.city,
-                                    schoolName: userProfile.schoolName,
-                                    languageExperiences: userProfile.languageExperiences,
-                                    workExperiences: normalizeExperiences((userProfile.experiences || []).filter(x => x.type === 1)),
-                                    volunteerExperiences: normalizeExperiences((userProfile.experiences || []).filter(x => x.type === 2)),
-                                    birthday: moment(userProfile.birthday).format(dateFormat),
-                                    skills: (userProfile.skills || []).filter(x => x.type === 1),
-                                    computerSkills: (userProfile.skills || []).filter(x => x.type === 2)
-                                }
-                            });
+    try {
+
+        return request.get(`/api/users/${userId}`)
+            .then((response) => {
+                if (response && response.data && response.data.userProfileId) {
+                    const user = response.data;
+                    return request.get(`/api/usersProfiles/${user.userProfileId}`, {
+                        params: {
+                            include: ['languageExperiences', 'skills', 'experiences'],
                         }
-                    }).catch(error => {
-                        if (error.response) {
-                            res.status(error.response.status).end(error.response.data)
-                        } else {
-                            res.status(500).end();
-                        }
-                    });
-            }
-        }).catch(error => {
-            if (error.response) {
-                res.status(error.response.status).end(error.response.data)
-            } else {
-                res.status(500).end();
-            }
-        });
+                    })
+                        .then((response2) => {
+                            if (response2 && response2.data) {
+                                const userProfile = response2.data;
+                                return res.render(`styles/${style}/index.hbs`, {
+                                    app: appConfig,
+                                    user,
+                                    userProfile: {
+                                        fullName: userProfile.fullName,
+                                        city: userProfile.city,
+                                        schoolName: userProfile.schoolName,
+                                        languageExperiences: userProfile.languageExperiences,
+                                        workExperiences: normalizeExperiences((userProfile.experiences || []).filter(x => x.type === 1)),
+                                        volunteerExperiences: normalizeExperiences((userProfile.experiences || []).filter(x => x.type === 2)),
+                                        birthday: moment(userProfile.birthday).format(dateFormat),
+                                        skills: (userProfile.skills || []).filter(x => x.type === 1),
+                                        computerSkills: (userProfile.skills || []).filter(x => x.type === 2)
+                                    }
+                                });
+                            }
+                        }).catch(error => {
+                            if (error.response) {
+                                res.status(error.response.status).end(error.response.data)
+                            } else {
+                                res.status(500).end();
+                            }
+                        });
+                }
+            }).catch(error => {
+                if (error.response) {
+                    res.status(error.response.status).end(error.response.data)
+                } else {
+                    res.status(500).end();
+                }
+            });
+    } catch (e) {
+        return res.status(500).end();
+    }
 });
 
 module.exports = router;
