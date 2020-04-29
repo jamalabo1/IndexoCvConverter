@@ -5,10 +5,10 @@ const fs = require('fs');
 const handlebars = require('hbs');
 const indexRouter = require('./routes/index');
 const handlebarsConfig = require('./i18n/hbsConf');
-
 for (const helper in handlebarsConfig.helpers) {
     handlebars.registerHelper(helper, handlebarsConfig.helpers[helper]);
 }
+
 
 const headerTemplate = fs.readFileSync(__dirname + '/views/_header.hbs', 'utf8');
 
@@ -29,13 +29,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(i18n.init);
-
-app.use(function (req, res, next) {
-    if (req.query.lang !== undefined && locales.indexOf(req.query.lang) >= 0) {
-        i18n.setLocale(req.query.lang);
-    }
-    next();
-});
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
