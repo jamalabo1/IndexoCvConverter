@@ -38,7 +38,7 @@ router.get('/:style/:userId.html', function (req, res) {
             .then((response) => {
                 if (response && response.data && response.data.userProfileId) {
                     const user = response.data;
-                    return request.get(`/api/usersProfiles/${user.userProfileId}`, {
+                    return request.get(`/api/users-profiles/${user.userProfileId}`, {
                         params: {
                             include: ['languageExperiences', 'skills', 'experiences'],
                         }
