@@ -5,6 +5,8 @@ const fs = require('fs');
 const handlebars = require('hbs');
 const indexRouter = require('./routes/index');
 const handlebarsConfig = require('./i18n/hbsConf');
+const cookieParser = require('cookie-parser')
+
 for (const helper in handlebarsConfig.helpers) {
     handlebars.registerHelper(helper, handlebarsConfig.helpers[helper]);
 }
@@ -23,8 +25,7 @@ i18n.configure({
     directory: __dirname + "/locales",
     defaultLocale: 'ar'
 });
-
-// view engine setup
+app.use(cookieParser());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 

@@ -27,13 +27,12 @@ router.get('/:style/:userId.html', function (req, res) {
     const request = axios.create({
         baseURL: process.env.API_URL,
         headers: {
+            authorization: `Bearer ${req.cookies['user-token']}`,
             ...req.headers,
             host: apiUrl.host
         }
     });
-
     try {
-
         return request.get(`/api/users/${userId}`)
             .then((response) => {
                 if (response && response.data && response.data.userProfileId) {
