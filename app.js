@@ -19,11 +19,14 @@ handlebars.registerPartial("header", headerTemplate)
 
 const app = express();
 
+//TODO: add english & LTR Support for the cvs
 const locales = ['he', 'ar'];
+
 i18n.configure({
     locales: locales,
     directory: __dirname + "/locales",
-    defaultLocale: 'ar'
+    cookie: 'lang-cookie',
+    defaultLocale: 'he'
 });
 app.use(cookieParser());
 app.set('views', path.join(__dirname, 'views'));
