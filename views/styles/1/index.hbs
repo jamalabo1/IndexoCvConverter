@@ -49,10 +49,6 @@
                 <div class="row">
                     <div class="col-sm-6 col-print-6 align-self-center mb-3 mb-lg-0">
                         <div class="zoo-profile-main">
-                            <div class="zoo-profile-main-pic">
-                                <img src="/cv-static/1/images/users/user-4.jpg" alt="" class="rounded-circle">
-
-                            </div><!--end zoo-profile-main-pic-->
                             <div class="zoo-profile_user-detail">
                                 <h5 class="zoo-user-name">
                                     {{userProfile.fullName}}
@@ -60,7 +56,12 @@
                                 <p class="cd-headline loading-bar">
                                     <span class="cd-words-wrapper">
                                         <b class="is-visible">
-                                            {{userProfile.schoolName}}
+                                            <span>
+                                                <strong>
+                                                    {{i18n "section_personal_detail_identity"}}
+                                                </strong>:
+                                                {{user.identity}}
+                                            </span>
                                         </b>
                                     </span>
                                 </p>
@@ -97,7 +98,7 @@
                         {{#each userProfile.languageExperiences}}
                             <div class="skill-box">
                                 <h4 class="skill-title">
-                                    {{i18n (concat "section_language_experiences_language" languageId)  }}
+                                    {{i18n (concat "section_language_experiences_language" id)  }}
                                 </h4>
                                 <div class="progress-line">
                                         <span data-percent="{{math 25 "*" experience}}"
@@ -114,12 +115,6 @@
                 <div class="col-sm-5 col-print-5 offset-lg-1 align-self-center align-content-center">
                     <p>
                         <span class="personal-detail-title">
-                            {{i18n "section_personal_detail_name"}}
-                        </span>
-                        <span class="personal-detail-info">{{userProfile.fullName}}</span>
-                    </p>
-                    <p>
-                        <span class="personal-detail-title">
                             {{i18n "section_personal_detail_birth_day"}}
                         </span>
                         <span class="personal-detail-info">
@@ -128,18 +123,18 @@
                     </p>
                     <p>
                         <span class="personal-detail-title">
-                            {{i18n "section_personal_detail_identity"}}
-                        </span>
-                        <span class="personal-detail-info">
-                            {{user.identity}}
-                        </span>
-                    </p>
-                    <p>
-                        <span class="personal-detail-title">
                             {{i18n "section_personal_detail_city"}}
                         </span>
                         <span class="personal-detail-info">
                             {{userProfile.city}}
+                        </span>
+                    </p>
+                    <p>
+                        <span class="personal-detail-title">
+                            {{i18n "section_personal_detail_school_name"}}
+                        </span>
+                        <span class="personal-detail-info">
+                            {{userProfile.schoolName}}
                         </span>
                     </p>
                 </div><!--end col-->
@@ -213,9 +208,10 @@
                                             onclick="return false;"
                                             type="checkbox"
                                             class="custom-control-input "
-                                            id="{{skillId}}">
-                                    <label class="custom-control-label skill-checkbox" for="{{skillId}}">
-                                        {{i18n (concat "skills" skillId)}}
+                                            id="{{id}}"
+                                    >
+                                    <label class="custom-control-label skill-checkbox" for="{{id}}">
+                                        {{i18n (concat "skills" id)}}
                                     </label>
                                 </div>
                             {{/each}}
@@ -229,11 +225,15 @@
                             </div>
                             {{#each userProfile.computerSkills}}
                                 <div class="custom-control custom-checkbox">
-                                    <input {{isSkillAvailable isAvailable}} onclick="return false;" type="checkbox"
-                                                                            class="custom-control-input "
-                                                                            id="computer_{{skillId}}">
-                                    <label class="custom-control-label skill-checkbox" for="computer_{{skillId}}">
-                                        {{i18n (concat "computer_skills" skillId)}}
+                                    <input
+                                        {{isSkillAvailable isAvailable}}
+                                            onclick="return false;"
+                                            type="checkbox"
+                                            class="custom-control-input "
+                                            id="computer_{{id}}"
+                                    >
+                                    <label class="custom-control-label skill-checkbox" for="computer_{{id}}">
+                                        {{i18n (concat "computer-skills" id)}}
                                     </label>
                                 </div>
                             {{/each}}

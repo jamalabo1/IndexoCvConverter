@@ -81,7 +81,7 @@
                     {{#each userProfile.languageExperiences}}
                         <div class="row items-row">
                             <div class="col-4 field-name colon">
-                                {{i18n (concat "section_language_experiences_language" languageId)  }}
+                                {{i18n (concat "section_language_experiences_language" id)  }}
                             </div>
                             <div class="col">
                                 <div class="progress language-experience-progress">
@@ -177,11 +177,11 @@
                                         {{isSkillAvailable isAvailable}}
                                             type="checkbox"
                                             class="form-check-input skill-checkbox"
-                                            id="{{skillId}}"
+                                            id="{{id}}"
                                             onclick="return false;"
                                     >
-                                    <label class="form-check-label" for="{{skillId}}">
-                                        {{i18n (concat "skills" skillId)}}
+                                    <label class="form-check-label" for="{{id}}">
+                                        {{i18n (concat "skills" id)}}
                                     </label>
                                 </div>
                             </div>
@@ -201,11 +201,11 @@
                                         {{isSkillAvailable isAvailable}}
                                             type="checkbox"
                                             class="form-check-input skill-checkbox"
-                                            id="computer_{{skillId}}"
+                                            id="computer_{{id}}"
                                             onclick="return false;"
                                     >
-                                    <label class="form-check-label" for="computer_{{skillId}}">
-                                        {{i18n (concat "computer_skills" skillId)}}
+                                    <label class="form-check-label" for="computer_{{id}}">
+                                        {{i18n (concat "computer-skills" id)}}
                                     </label>
                                 </div>
                             </div>
