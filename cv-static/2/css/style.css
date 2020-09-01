@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Tajawal&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sen&display=swap');
 
 html,
 body {
-    font-family: 'Tajawal', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Sen', 'Varela Round', 'Tajawal', sans-serif;
 }
+
+
 
 .title {
     padding-top: 40px;
@@ -55,9 +62,11 @@ body {
     margin-left: 5px;
     position: inherit;
 }
+
 .skill-checkbox-container {
     text-align: start;
 }
+
 .items-row {
     text-align: start;
 }
