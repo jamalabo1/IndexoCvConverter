@@ -25,8 +25,7 @@ router.get('/:style/:userId.html', function (req, res) {
     const style = req.params.style;
     const userId = req.params.userId;
     const token = req.cookies['account-token'];
-    if (token === undefined) return res.status(403).end()
-        ;
+    if (token === undefined) return res.status(403).end();
     const request = axios.create({
         baseURL: process.env.API_URL,
         headers: {
@@ -74,7 +73,9 @@ router.get('/:style/:userId.html', function (req, res) {
                 }
             }).catch(error => {
                 if (error.response) {
-                    res.status(error.response.status).end(error.response.data)
+                    res
+                        .status(error.response.status)
+                        .send(error.response.data)
                 } else {
                     res.status(500).end();
                 }
